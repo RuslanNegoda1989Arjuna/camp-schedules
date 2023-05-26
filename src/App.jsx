@@ -1,19 +1,11 @@
+import ListCharacters from 'components/ListCharacters/ListCharacters';
 import './shared/styles/styles.scss';
 
 function App() {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React template
-    </div>
+    <>
+      <ListCharacters/>
+    </>
   );
 };
 

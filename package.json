@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://RuslanNegoda1989Arjuna.github.io/react-hooks-study/",
   "dependencies": {
+    "@babel/generator": "^7.21.9",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -37,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/babel__generator": "^7.6.4"
   }
 }
