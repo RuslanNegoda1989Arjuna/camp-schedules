@@ -1,4 +1,6 @@
-export const App = () => {
+import './shared/styles/styles.scss';
+
+function App() {
   return (
     <div
       style={{
@@ -14,3 +16,5 @@ export const App = () => {
     </div>
   );
 };
+
+export default App;
