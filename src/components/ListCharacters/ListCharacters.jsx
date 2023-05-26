@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from './ListCharacters.module.scss'
 import listHeroes from '../../data/theBoyCharactersList.json'
+import { TiDelete } from 'react-icons/ti';
 
 const ListCharacters = () => {
     const [heroesList, setHeroesList] = useState(listHeroes);
@@ -14,12 +15,14 @@ const ListCharacters = () => {
     return (<>
         <div className={styles.container} >
 <h2 className={styles.title}>The Boys Heroes</h2>
-        <div>
+        <div className={styles.ulBox}>
             <ul className={styles.list}>
                 {heroesList.map(({ id, name }) => {
                     return (
-                        <li key={id} className={styles.items}>{name}
-                        <button onClick={() => handleDeleteHeroe(id)}>X</button></li>
+                        <li key={id} className={styles.items}>
+                            <span className={styles.name}>{name}</span>
+                            <button className={styles.delButton} onClick={() => handleDeleteHeroe(id)}><TiDelete className={styles.delItem} /></button>
+                        </li>
                     )
                 })}
                 
