@@ -1,112 +1,119 @@
-import React, { useEffect, useState } from 'react';
-import { Formik, Field, Form } from 'formik';
-
-const initialValues = {
-  fields: Array(12).fill({ hour: '', minute: '', activity: 'перекус' }),
-};
-
-const activities = ['перекус', 'велика гра', 'майстер клас'];
+import { Formik, Field, FieldArray, Form, ErrorMessage } from 'formik';
+import React, { useState, useEffect } from 'react';
 
 const CampForm = () => {
-//   const [showDayHeader, setShowDayHeader] = useState(true);
-const [submittedData, setSubmittedData] = useState([]);
- const [day, setDay] = useState(1);
- const [showDayHeader, setShowDayHeader] = useState(true);
+  const [formValues, setFormValues] = useState([]);
+
+  useEffect(() => {
+    // Зберігаємо значення форми в стані
+    const storedFormValues = localStorage.getItem('formValues');
+    if (storedFormValues) {
+      setFormValues(JSON.parse(storedFormValues));
+    }
+  }, []);
 
   const handleSubmit = (values, { resetForm }) => {
-    setSubmittedData([...submittedData, ...values.fields]);
+    setFormValues([...formValues, values.activities]);
     resetForm();
-    setShowDayHeader(false);
   };
 
-//   useEffect(() => {
-//     if (!showDayHeader) {
-//       setDay((prevDay) => prevDay + 1);
-//       setShowDayHeader(true);
-//     }
-//   }, [showDayHeader, submittedData]);
+  useEffect(() => {
+    // Зберігаємо оновлені значення форми в локальному сховищі
+    localStorage.setItem('formValues', JSON.stringify(formValues));
+  }, [formValues]);
+
   return (
-    <div>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <div className="container">
+      <h2>Форма</h2>
+      <Formik
+        initialValues={{
+          activities: [{ hour: '', minute: '', activity: '' }],
+        }}
+        onSubmit={handleSubmit}
+      >
         {({ values }) => (
           <Form>
-            <div className="cards-container">
-              {values.fields.map((field, index) => (
-                <div className="card" key={index}>
-                  <div className="card-header">Карточка {index + 1}</div>
-                  <div className="card-body">
-                    <label htmlFor={`fields[${index}].hour`}></label>
-                    <Field
-                      type="number"
-                      name={`fields[${index}].hour`}
-                      min="0"
-                      max="23"
-                    />
+            <FieldArray name="activities">
+              {({ push, remove }) => (
+                <div>
+                  {values.activities.map((_, index) => (
+                    <div key={index} className="activity-row">
+                      <div className="form-group">
+                        <label htmlFor={`activities.${index}.hour`}>Година:</label>
+                        <Field
+                          type="text"
+                          id={`activities.${index}.hour`}
+                          name={`activities.${index}.hour`}
+                        />
+                        <ErrorMessage
+                          name={`activities.${index}.hour`}
+                          component="div"
+                          className="error-message"
+                        />
+                      </div>
 
-                    <label htmlFor={`fields[${index}].minute`}>:</label>
-                    <Field
-                      type="number"
-                      name={`fields[${index}].minute`}
-                      min="0"
-                      max="59"
-                    />
+                      <div className="form-group">
+                        <label htmlFor={`activities.${index}.minute`}>Хвилина:</label>
+                        <Field
+                          type="text"
+                          id={`activities.${index}.minute`}
+                          name={`activities.${index}.minute`}
+                        />
+                        <ErrorMessage
+                          name={`activities.${index}.minute`}
+                          component="div"
+                          className="error-message"
+                        />
+                      </div>
 
-                    <label htmlFor={`fields[${index}].activity`}>
-                      Діяльність:
-                    </label>
-                    <Field as="select" name={`fields[${index}].activity`}>
-                      {activities.map((activity, activityIndex) => (
-                        <option key={activityIndex} value={activity}>
-                          {activity}
-                        </option>
-                      ))}
-                    </Field>
-                  </div>
+                      <div className="form-group">
+                        <label htmlFor={`activities.${index}.activity`}>Діяльність:</label>
+                        <Field
+                          as="select"
+                          id={`activities.${index}.activity`}
+                          name={`activities.${index}.activity`}
+                        >
+                          <option value="">Оберіть діяльність</option>
+                          <option value="перекус">перекус</option>
+                          <option value="велика гра">велика гра</option>
+                          <option value="майстер клас">майстер клас</option>
+                        </Field>
+                        <ErrorMessage
+                          name={`activities.${index}.activity`}
+                          component="div"
+                          className="error-message"
+                        />
+                      </div>
+
+                      <button type="button" onClick={() => remove(index)}>
+                        Видалити
+                      </button>
+                    </div>
+                  ))}
+                  <button type="button" onClick={() => push({ hour: '', minute: '', activity: '' })}>
+                    Додати
+                  </button>
                 </div>
-              ))}
-            </div>
+              )}
+            </FieldArray>
 
-            <button type="submit">Відправити</button>
+            <button type="submit">Submit</button>
           </Form>
         )}
-          </Formik>
-          
-           {submittedData.length > 0 && (
-      <div className="submitted-data">
-        <h2>Введені дані:</h2>
-        {showDayHeader && <div className="card-header">День {day}</div>}
-        {submittedData.map((data, index) => (
-          <div className="card" key={index}>
-            {data.hour !== '' && data.minute !== '' && data.activity && (
-              <div className="card-body">
-                <p>
-                  {String(data.hour).padStart(2, '0')} : {String(data.minute).padStart(2, '0')} {data.activity}
-                </p>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    )}
+      </Formik>
 
-{/* <div className="submitted-data">
-      <h2>Введені дані:</h2>
-      {showDayHeader && <div className="day-header">День {day}</div>}
-      <div className="cards-container">
-        {submittedData.map((data, index) => (
-          <div className="card" key={index}>
-            {data.fields.hour !== '' && data.fields.minute !== '' && data.fields.activity && (
-              <div className="card-body">
-                <p>
-                  {String(data.fields.hour).padStart(2, '0')} : {String(data.fields.minute).padStart(2, '0')} {data.fields.activity}
-                </p>
-              </div>
-            )}
+      <div className="activities-list">
+        {formValues.map((activities, dayIndex) => (
+          <div key={dayIndex}>
+            <h3>День {dayIndex + 1}</h3>
+            {activities.map((activity, index) => (
+              <p key={index}>
+                {activity.hour.padStart(2, '0')} : {activity.minute.padStart(2, '0')} {activity.activity}
+              </p>
+            ))}
           </div>
         ))}
       </div>
-    </div> */}
-          
     </div>
   );
 };
