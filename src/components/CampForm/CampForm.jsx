@@ -1,5 +1,6 @@
 import { Formik, Field, FieldArray, Form, ErrorMessage } from 'formik';
 import React, { useState, useEffect } from 'react';
+import styles from "./CampForm.module.scss"
 
 const CampForm = () => {
   const [formValues, setFormValues] = useState([]);
@@ -23,7 +24,7 @@ const CampForm = () => {
   }, [formValues]);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <h2>Форма</h2>
       <Formik
         initialValues={{
@@ -102,7 +103,7 @@ const CampForm = () => {
         )}
       </Formik>
 
-      <div className="activities-list">
+      <div className={styles['activities-list']}>
         {formValues.map((activities, dayIndex) => (
           <div key={dayIndex}>
             <h3>День {dayIndex + 1}</h3>

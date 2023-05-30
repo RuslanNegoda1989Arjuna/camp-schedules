@@ -1,0 +1,44 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    label {
+        margin-right: 5px;
+    }
+
+    .divider {
+        margin-right: 5px;
+    }
+
+    select {
+        width: 200px;
+    }
+}
+
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
+
+.activities-list {
+    margin-top: 20px;
+
+    h3 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+}
