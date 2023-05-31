@@ -9,15 +9,21 @@
 }
 .activityRow {
     display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 .time {
     width: 50px;
 }
-.form-group {
+.formGroup {
     display: flex;
-    align-items: center;
     margin-bottom: 10px;
 
+    &:nth-last-child(2) {
+            margin-left: 20px;
+        }
+        
     label {
         margin-right: 5px;
     }
@@ -29,16 +35,14 @@
     select {
         width: 200px;
     }
+  
 }
 
-.error-message {
+.errorMessage {
     color: red;
     margin-top: 5px;
 }
 .btnPlusMinus {
-    display: flex;
-        align-items: center;
-        justify-content: center;
         width: 30px;
         height: 30px;
         padding: 0;

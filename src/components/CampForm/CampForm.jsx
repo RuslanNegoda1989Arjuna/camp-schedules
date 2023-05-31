@@ -2,10 +2,11 @@ import { Formik, Field, FieldArray, Form, ErrorMessage } from 'formik';
 import React, { useState, useEffect } from 'react';
 import styles from "./CampForm.module.scss";
 import { BsPlusCircleFill } from 'react-icons/bs';
-import { TiDeleteOutline } from 'react-icons/ti';
+import { AiFillDelete } from 'react-icons/ai';
 
 const CampForm = () => {
   const [formValues, setFormValues] = useState([]);
+  console.log(formValues);
 
   useEffect(() => {
     // Зберігаємо значення форми в стані
@@ -41,8 +42,8 @@ const CampForm = () => {
                 <div>
                   {values.activities.map((_, index) => (
                     <div key={index} className={styles.activityRow}>
-                      <div className="form-group">
-                        <label htmlFor={`activities.${index}.hour`}>Година:</label>
+                      <div className={styles.formGroup}>
+                        <label htmlFor={`activities.${index}.hour`}></label>
                         <Field
                           className={styles.time}
                           type="text"
@@ -52,11 +53,11 @@ const CampForm = () => {
                         <ErrorMessage
                           name={`activities.${index}.hour`}
                           component="div"
-                          className="error-message"
+                          className={styles.errorMessage}
                         />
                       </div>
 
-                      <div className="form-group">
+                      <div className={styles.formGroup}>
                         <label htmlFor={`activities.${index}.minute`}><b>:</b></label>
                         <Field
                           className={styles.time}
@@ -67,11 +68,11 @@ const CampForm = () => {
                         <ErrorMessage
                           name={`activities.${index}.minute`}
                           component="div"
-                          className="error-message"
+                          className={styles.errorMessage}
                         />
                       </div>
 
-                      <div className="form-group">
+                      <div className={styles.formGroup}>
                         <label htmlFor={`activities.${index}.activity`}>Діяльність:</label>
                         <Field
                           as="select"
@@ -86,16 +87,19 @@ const CampForm = () => {
                         <ErrorMessage
                           name={`activities.${index}.activity`}
                           component="div"
-                          className="error-message"
+                          className={styles.errorMessage}
                         />
                       </div>
-                      <button className={styles.btnPlusMinus} type="button" onClick={() => push({ hour: '', minute: '', activity: '' })}>
+                      <div className={styles.formGroup}>
+                        <button className={styles.btnPlusMinus} type="button" onClick={() => push({ hour: '', minute: '', activity: '' })}>
                        <BsPlusCircleFill className={styles.minusPlus}/>
                       </button>
 
                       <button className={styles.btnPlusMinus} type="button" onClick={() => remove(index)}>
-                       <TiDeleteOutline className={styles.minusPlus}/>
+                       <AiFillDelete className={styles.minusPlus}/>
                       </button>
+                      </div>
+                      
                     </div>
                   ))}
                 </div>
