@@ -1,6 +1,8 @@
 import { Formik, Field, FieldArray, Form, ErrorMessage } from 'formik';
 import React, { useState, useEffect } from 'react';
-import styles from "./CampForm.module.scss"
+import styles from "./CampForm.module.scss";
+import { BsPlusCircleFill } from 'react-icons/bs';
+import { TiDeleteOutline } from 'react-icons/ti';
 
 const CampForm = () => {
   const [formValues, setFormValues] = useState([]);
@@ -38,10 +40,11 @@ const CampForm = () => {
               {({ push, remove }) => (
                 <div>
                   {values.activities.map((_, index) => (
-                    <div key={index} className="activity-row">
+                    <div key={index} className={styles.activityRow}>
                       <div className="form-group">
                         <label htmlFor={`activities.${index}.hour`}>Година:</label>
                         <Field
+                          className={styles.time}
                           type="text"
                           id={`activities.${index}.hour`}
                           name={`activities.${index}.hour`}
@@ -54,8 +57,9 @@ const CampForm = () => {
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor={`activities.${index}.minute`}>Хвилина:</label>
+                        <label htmlFor={`activities.${index}.minute`}><b>:</b></label>
                         <Field
+                          className={styles.time}
                           type="text"
                           id={`activities.${index}.minute`}
                           name={`activities.${index}.minute`}
@@ -85,20 +89,20 @@ const CampForm = () => {
                           className="error-message"
                         />
                       </div>
+                      <button className={styles.btnPlusMinus} type="button" onClick={() => push({ hour: '', minute: '', activity: '' })}>
+                       <BsPlusCircleFill className={styles.minusPlus}/>
+                      </button>
 
-                      <button type="button" onClick={() => remove(index)}>
-                        Видалити
+                      <button className={styles.btnPlusMinus} type="button" onClick={() => remove(index)}>
+                       <TiDeleteOutline className={styles.minusPlus}/>
                       </button>
                     </div>
                   ))}
-                  <button type="button" onClick={() => push({ hour: '', minute: '', activity: '' })}>
-                    Додати
-                  </button>
                 </div>
               )}
             </FieldArray>
 
-            <button type="submit">Submit</button>
+            <button className={styles.submit} type="submit">Submit</button>
           </Form>
         )}
       </Formik>
