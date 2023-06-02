@@ -111,7 +111,7 @@ const CampForm = () => {
         )}
       </Formik>
 
-      <div className={styles['activities-list']}>
+      <div className={styles.activitiesList}>
         {formValues.map((activities, dayIndex) => (
           <div key={dayIndex}>
             <h3>День {dayIndex + 1}</h3>
