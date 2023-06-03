@@ -4,6 +4,7 @@ import styles from "./CampForm.module.scss";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { AiFillDelete } from 'react-icons/ai';
 import { nanoid } from 'nanoid';
+import selectedActivities from '../../data/selectedActivities.json'
 
 
 const CampForm = ({ onSubmit }) => {
@@ -46,7 +47,7 @@ const CampForm = ({ onSubmit }) => {
                       </div>
 
                       <div className={styles.formGroup}>
-                        <label htmlFor={`activities.${index}.minute`}><b>:</b></label>
+                        <label htmlFor={`activities.${index}.minute`}></label>
                         <Field
                           className={styles.time}
                           type="text"
@@ -61,16 +62,18 @@ const CampForm = ({ onSubmit }) => {
                       </div>
 
                       <div className={styles.formGroup}>
-                        <label htmlFor={`activities.${index}.activity`}>Діяльність:</label>
+                        <label htmlFor={`activities.${index}.activity`}></label>
                         <Field
+                          className={styles.selectActivity}
                           as="select"
                           id={`activities.${index}.activity`}
                           name={`activities.${index}.activity`}
                         >
-                          <option value="">Оберіть діяльність</option>
-                          <option value="перекус">перекус</option>
-                          <option value="велика гра">велика гра</option>
-                          <option value="майстер клас">майстер клас</option>
+                         {selectedActivities.map(option => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
                         </Field>
                         <ErrorMessage
                           name={`activities.${index}.activity`}
