@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/camp-schedules/static/css/main.4cc0d7be.css",
-    "main.js": "/camp-schedules/static/js/main.3536a5b6.js",
+    "main.css": "/camp-schedules/static/css/main.a0d0588c.css",
+    "main.js": "/camp-schedules/static/js/main.f7dbd030.js",
     "index.html": "/camp-schedules/index.html",
-    "main.4cc0d7be.css.map": "/camp-schedules/static/css/main.4cc0d7be.css.map",
-    "main.3536a5b6.js.map": "/camp-schedules/static/js/main.3536a5b6.js.map"
+    "main.a0d0588c.css.map": "/camp-schedules/static/css/main.a0d0588c.css.map",
+    "main.f7dbd030.js.map": "/camp-schedules/static/js/main.f7dbd030.js.map"
   },
   "entrypoints": [
-    "static/css/main.4cc0d7be.css",
-    "static/js/main.3536a5b6.js"
+    "static/css/main.a0d0588c.css",
+    "static/js/main.f7dbd030.js"
   ]
 }
