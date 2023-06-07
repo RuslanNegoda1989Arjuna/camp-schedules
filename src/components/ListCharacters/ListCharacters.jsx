@@ -11,7 +11,6 @@ const ListCharacters = () => {
         setHeroesList(newListHeroes)
 
     }
-    console.log(heroesList);
     return (<>
         <div className={styles.container} >
 <h2 className={styles.title}>The Boys Heroes</h2>

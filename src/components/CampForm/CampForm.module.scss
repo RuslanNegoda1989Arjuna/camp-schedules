@@ -1,0 +1,74 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+}
+.activityRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.time {
+    width: 50px;
+}
+.formGroup {
+    display: flex;
+    margin-bottom: 10px;
+
+    &:nth-last-child(2) {
+            margin-left: 20px;
+        }
+        
+    label {
+        margin-right: 5px;
+    }
+
+    .divider {
+        margin-right: 5px;
+    }
+
+    select {
+        width: 200px;
+    }
+  
+}
+
+.errorMessage {
+    color: red;
+    margin-top: 5px;
+}
+.btnPlusMinus {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        margin-left: 15px;
+        background: none;
+        cursor: pointer;
+}
+.minusPlus {
+    width: 100%;
+    height: 100%;
+}
+.submit {
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid rebeccapurple;
+    cursor: pointer;
+}
+
+.activitiesList {
+    margin-top: 20px;
+
+    h3 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+}
