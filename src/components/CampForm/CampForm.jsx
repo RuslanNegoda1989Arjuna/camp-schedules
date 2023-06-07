@@ -4,7 +4,8 @@ import styles from "./CampForm.module.scss";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { AiFillDelete } from 'react-icons/ai';
 import { nanoid } from 'nanoid';
-import selectedActivities from '../../data/selectedActivities.json'
+import selectedActivities from '../../data/selectedActivities.json';
+import ButtonSkew from '../ButtonSkew/ButtonSkew'
 
 
 const CampForm = ({ onSubmit }) => {
@@ -17,7 +18,7 @@ const CampForm = ({ onSubmit }) => {
 
   return (
     <div className={styles.container}>
-      <h2>Форма</h2>
+      <h2>Графік</h2>
       <Formik
         initialValues={{
           activities: [{id: nanoid(), hour: '', minute: '', activity: '' }],
@@ -97,7 +98,8 @@ const CampForm = ({ onSubmit }) => {
               )}
             </FieldArray>
 
-            <button className={styles.submit} type="submit">Submit</button>
+            {/* <button className={styles.submit} type="submit">Submit</button> */}
+             <ButtonSkew type="submit" text="Додати день"  />
           </Form>
         )}
       </Formik>

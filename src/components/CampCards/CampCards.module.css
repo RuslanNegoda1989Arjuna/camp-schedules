@@ -1,0 +1,47 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.container h2 {
+  margin-bottom: 20px;
+}
+
+.titleDay {
+  text-align: center;
+}
+
+.activitiesItem {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid rgb(124, 211, 167);
+  border-radius: 10px;
+  background-color: #8BAA36;
+}
+.activitiesItem h3 {
+  margin-bottom: 10px;
+}
+.activitiesItem p {
+  margin: 5px 0;
+}
+
+.activitiesList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  min-width: 350px;
+  padding: 10px;
+  border: 1px solid rgb(124, 211, 167);
+  border-radius: 10px;
+  background-color: #7E7E7E;
+  font-size: 20px;
+}
+.activitiesList h3 {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+.activitiesList p {
+  margin: 5px 0;
+}/*# sourceMappingURL=CampCards.module.css.map */
