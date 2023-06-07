@@ -1,8 +1,8 @@
 {
-  "name": "react-hooks-study",
+  "name": "camp-schedules",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://RuslanNegoda1989Arjuna.github.io/react-hooks-study/",
+  "homepage": "https://RuslanNegoda1989Arjuna.github.io/camp-schedules/",
   "dependencies": {
     "@babel/generator": "^7.21.9",
     "@testing-library/jest-dom": "^5.16.3",
