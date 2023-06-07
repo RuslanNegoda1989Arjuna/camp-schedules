@@ -1,6 +1,7 @@
 import CampCards from 'components/CampCards/CampCards';
 import CampForm from 'components/CampForm/CampForm';
 import React, { useState, useEffect } from 'react';
+import styles from './SummerCampScheduler.module.scss'
 
 const SummerCampScheduler = () => {
 
@@ -28,10 +29,11 @@ useEffect(() => {
 }, [formValues]);
     
     return (
-        <>
-
+      <>
+        <div className={styles.scheduler}>
             <CampForm onSubmit={addScheduler}/>
             <CampCards values={formValues} />
+        </div>
     </>
     )
  }

@@ -3,7 +3,7 @@ import styles from './CampCards.module.scss'
 const CampCards = ({ values }) => {
   return (
     <div className={styles.container}>
-        <h2>Camp Scheduler</h2>
+        <h2 className={styles.titleDay}>Табірний графік</h2>
         <ul className={styles.activitiesList}>
         {values.map((activities, dayIndex) => (
           <li className={styles.activitiesItem} key={dayIndex}>

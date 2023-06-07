@@ -98,7 +98,6 @@ const CampForm = ({ onSubmit }) => {
               )}
             </FieldArray>
 
-            {/* <button className={styles.submit} type="submit">Submit</button> */}
              <ButtonSkew type="submit" text="Додати день"  />
           </Form>
         )}
