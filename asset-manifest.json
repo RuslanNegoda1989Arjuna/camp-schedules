@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react-hooks-study/static/css/main.640cb65e.css",
-    "main.js": "/react-hooks-study/static/js/main.ee702bdd.js",
-    "index.html": "/react-hooks-study/index.html",
-    "main.640cb65e.css.map": "/react-hooks-study/static/css/main.640cb65e.css.map",
-    "main.ee702bdd.js.map": "/react-hooks-study/static/js/main.ee702bdd.js.map"
+    "main.css": "/camp-schedules/static/css/main.640cb65e.css",
+    "main.js": "/camp-schedules/static/js/main.ee702bdd.js",
+    "index.html": "/camp-schedules/index.html",
+    "main.640cb65e.css.map": "/camp-schedules/static/css/main.640cb65e.css.map",
+    "main.ee702bdd.js.map": "/camp-schedules/static/js/main.ee702bdd.js.map"
   },
   "entrypoints": [
     "static/css/main.640cb65e.css",
