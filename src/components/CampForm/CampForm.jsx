@@ -1,37 +1,26 @@
 import { Formik, Field, FieldArray, Form, ErrorMessage } from 'formik';
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import styles from "./CampForm.module.scss";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { AiFillDelete } from 'react-icons/ai';
+import { nanoid } from 'nanoid';
+import selectedActivities from '../../data/selectedActivities.json'
 
-const CampForm = () => {
-  const [formValues, setFormValues] = useState([]);
-  console.log(formValues);
 
-  useEffect(() => {
-    // Зберігаємо значення форми в стані
-    const storedFormValues = localStorage.getItem('formValues');
-    if (storedFormValues) {
-      setFormValues(JSON.parse(storedFormValues));
-    }
-  }, []);
+const CampForm = ({ onSubmit }) => {
+
 
   const handleSubmit = (values, { resetForm }) => {
-    setFormValues([...formValues, values.activities]);
+    onSubmit(values.activities);
     resetForm();
   };
-
-  useEffect(() => {
-    // Зберігаємо оновлені значення форми в локальному сховищі
-    localStorage.setItem('formValues', JSON.stringify(formValues));
-  }, [formValues]);
 
   return (
     <div className={styles.container}>
       <h2>Форма</h2>
       <Formik
         initialValues={{
-          activities: [{ hour: '', minute: '', activity: '' }],
+          activities: [{id: nanoid(), hour: '', minute: '', activity: '' }],
         }}
         onSubmit={handleSubmit}
       >
@@ -58,7 +47,7 @@ const CampForm = () => {
                       </div>
 
                       <div className={styles.formGroup}>
-                        <label htmlFor={`activities.${index}.minute`}><b>:</b></label>
+                        <label htmlFor={`activities.${index}.minute`}></label>
                         <Field
                           className={styles.time}
                           type="text"
@@ -73,16 +62,18 @@ const CampForm = () => {
                       </div>
 
                       <div className={styles.formGroup}>
-                        <label htmlFor={`activities.${index}.activity`}>Діяльність:</label>
+                        <label htmlFor={`activities.${index}.activity`}></label>
                         <Field
+                          className={styles.selectActivity}
                           as="select"
                           id={`activities.${index}.activity`}
                           name={`activities.${index}.activity`}
                         >
-                          <option value="">Оберіть діяльність</option>
-                          <option value="перекус">перекус</option>
-                          <option value="велика гра">велика гра</option>
-                          <option value="майстер клас">майстер клас</option>
+                         {selectedActivities.map(option => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
                         </Field>
                         <ErrorMessage
                           name={`activities.${index}.activity`}
@@ -110,19 +101,6 @@ const CampForm = () => {
           </Form>
         )}
       </Formik>
-
-      <div className={styles.activitiesList}>
-        {formValues.map((activities, dayIndex) => (
-          <div key={dayIndex}>
-            <h3>День {dayIndex + 1}</h3>
-            {activities.map((activity, index) => (
-              <p key={index}>
-                {activity.hour.padStart(2, '0')} : {activity.minute.padStart(2, '0')} {activity.activity}
-              </p>
-            ))}
-          </div>
-        ))}
-      </div>
     </div>
   );
 };

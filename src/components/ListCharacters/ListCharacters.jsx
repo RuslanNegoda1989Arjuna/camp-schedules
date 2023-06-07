@@ -13,7 +13,7 @@ const ListCharacters = () => {
     }
     return (<>
         <div className={styles.container} >
-<h2 className={styles.title}>The Boys Heroes</h2>
+        <h2 className={styles.title}>The Boys Heroes</h2>
         <div className={styles.ulBox}>
             <ul className={styles.list}>
                 {heroesList.map(({ id, name }) => {
