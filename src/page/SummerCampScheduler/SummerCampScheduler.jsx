@@ -26,7 +26,7 @@ const SummerCampScheduler = () => {
     } else {
       setActivities(selectedActivities);
     }
-  }, [activities]);
+  }, []);
 
     const addScheduler = Schaduler => {
 
