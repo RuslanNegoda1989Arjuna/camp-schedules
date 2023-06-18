@@ -1,21 +1,33 @@
 import CampCards from 'components/CampCards/CampCards';
 import CampForm from 'components/CampForm/CampForm';
 import React, { useState, useEffect } from 'react';
-import styles from './SummerCampScheduler.module.scss'
+import styles from './SummerCampScheduler.module.scss';
+import selectedActivities from '../../data/selectedActivities.json';
+import ActivityForm from 'components/ActivityForm/ActivityForm';
 
 const SummerCampScheduler = () => {
 
-    const [formValues, setFormValues] = useState([]);
-    console.log(formValues);
+  const [formValues, setFormValues] = useState([]);
+  const [activities, setActivities] = useState(selectedActivities);
+
+
+  
   useEffect(() => {
-    // Зберігаємо значення форми в стані
     const storedFormValues = localStorage.getItem('formValues');
     if (storedFormValues) {
       setFormValues(JSON.parse(storedFormValues));
     }
   }, []);
-    
-      
+
+  useEffect(() => {
+    const storedActivities = localStorage.getItem('activities');
+    if (storedActivities) {
+      setActivities(JSON.parse(storedActivities));
+    } else {
+      setActivities(selectedActivities);
+    }
+  }, [activities]);
+
     const addScheduler = Schaduler => {
 
     setFormValues([...formValues, Schaduler]);
@@ -26,19 +38,28 @@ const SummerCampScheduler = () => {
     );
     setFormValues(updatedFormValues);
   };
+
+  const addActivityOption = (newActivity) => {
+    const newActivities = [...activities, { value: newActivity, label: newActivity }];
+    setActivities(newActivities);
+    localStorage.setItem('activities', JSON.stringify(newActivities));
+  };
     
     
     
 useEffect(() => {
-    // Зберігаємо оновлені значення форми в локальному сховищі
     localStorage.setItem('formValues', JSON.stringify(formValues));
 }, [formValues]);
     
     return (
       <>
         <div className={styles.scheduler}>
-            <CampForm onSubmit={addScheduler}/>
-            <CampCards values={formValues} onDelete={deleteScheduler}/>
+          <div className={styles.formBox}>
+            <CampForm onSubmit={addScheduler} activityOptions={activities}/>
+            <ActivityForm onAddOption={addActivityOption} />
+          </div>
+
+          <CampCards values={formValues} onDelete={deleteScheduler}/>
         </div>
     </>
     )

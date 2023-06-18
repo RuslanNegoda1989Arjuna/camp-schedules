@@ -1,14 +1,13 @@
 import { Formik, Field, FieldArray, Form, ErrorMessage } from 'formik';
-// import React, { useState, useEffect } from 'react';
 import styles from "./CampForm.module.scss";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { AiFillDelete } from 'react-icons/ai';
 import { nanoid } from 'nanoid';
-import selectedActivities from '../../data/selectedActivities.json';
+// import selectedActivities from '../../data/selectedActivities.json';
 import ButtonSkew from '../ButtonSkew/ButtonSkew'
 
 
-const CampForm = ({ onSubmit }) => {
+const CampForm = ({ onSubmit, activityOptions }) => {
 
 
   const handleSubmit = (values, { resetForm }) => {
@@ -70,7 +69,7 @@ const CampForm = ({ onSubmit }) => {
                           id={`activities.${index}.activity`}
                           name={`activities.${index}.activity`}
                         >
-                         {selectedActivities.map(option => (
+                         {activityOptions.map(option => (
                             <option key={option.value} value={option.value}>
                               {option.label}
                             </option>
