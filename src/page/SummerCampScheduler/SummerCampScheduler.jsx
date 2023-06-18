@@ -20,6 +20,12 @@ const SummerCampScheduler = () => {
 
     setFormValues([...formValues, Schaduler]);
   };
+    const deleteScheduler = (dayIndex) => {
+    const updatedFormValues = formValues.filter(
+      (_, index) => index !== dayIndex
+    );
+    setFormValues(updatedFormValues);
+  };
     
     
     
@@ -32,7 +38,7 @@ useEffect(() => {
       <>
         <div className={styles.scheduler}>
             <CampForm onSubmit={addScheduler}/>
-            <CampCards values={formValues} />
+            <CampCards values={formValues} onDelete={deleteScheduler}/>
         </div>
     </>
     )
