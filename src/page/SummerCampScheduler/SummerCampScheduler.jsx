@@ -10,7 +10,6 @@ const SummerCampScheduler = () => {
   const [formValues, setFormValues] = useState([]);
   const [activities, setActivities] = useState(selectedActivities);
 
-
   
   useEffect(() => {
     const storedFormValues = localStorage.getItem('formValues');
@@ -59,8 +58,9 @@ useEffect(() => {
             <ActivityForm onAddOption={addActivityOption} />
           </div>
 
-          <CampCards values={formValues} onDelete={deleteScheduler}/>
+          {/* <CampCards values={formValues} onDelete={deleteScheduler}/> */}
         </div>
+        {formValues.length !== 0 && <CampCards values={formValues} onDelete={deleteScheduler}/>}
     </>
     )
  }
